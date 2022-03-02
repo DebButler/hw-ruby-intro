@@ -105,8 +105,34 @@ def starts_with_consonant? (s)
   return startsWithConsonant
 end
 
-def binary_multiple_of_4? s
-  # YOUR CODE HERE
+def binary_multiple_of_4? (s)
+  # Initialize variables
+  isMultipleOfFour = false
+
+  # This checks if the string is a binary
+  checkForBinary = s.count('0') + s.count('1')
+  # This triggers if the number of 0s and 1s is equal to the string's size
+  if s.size == checkForBinary
+    # This checks if the string is empty
+    if s.empty?
+      isMultipleOfFour = false
+    # A binary number is a multiple of four if it ends in two zeroes
+    elsif s.end_with?("00")
+      isMultipleOfFour = true
+    # This will check if the binary number is zero
+    # Zero is considered a multiple of four
+    elsif s == "0"
+      isMultipleOfFour = true
+    # If it is anything else, it is not a binary number that is a multiple of four
+    else
+      isMultipleOfFour = false
+    end
+  # If the numbers are not equal, then we know it can't be a binary number
+  else
+    isMultipleOfFour = false
+  end
+
+  return isMultipleOfFour
 end
 
 # Part 3
