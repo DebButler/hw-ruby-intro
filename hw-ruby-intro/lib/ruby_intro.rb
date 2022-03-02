@@ -16,6 +16,7 @@ def max_2_sum (arr)
   # Initialize variables
   firstLargest = 0
   seconfLargest = 0
+  # This is initialized to -1 for error checking
   sum = -1
 
   # Checks if the array is empty
@@ -36,35 +37,72 @@ def max_2_sum (arr)
     # We will traverse the rest of the array to find the largest two elements
     index = 2
     while index < arr.length
-      # If current element is greater than first then update both first and second
-      if arr[index] > first
+      # If current element is greater than or equal to first variable
+      # then update both first and second variables
+      if arr[index] >= first
         second = first
         first = arr[index]
  
-      # If arr[i] is in between first and second then update second
+      # If the current element is in between first and second variables then update second variable
       elsif arr[index] > second && arr[index] != first
        second = arr[index]
       end
     index = index + 1
     end
 
+    # Compute the sum
     sum = first + second
   end
   return sum
 end
 
-def sum_to_n? arr, n
-  # YOUR CODE HERE
+def sum_to_n? (arr, n)
+  # Initialize variables
+  matchFound = false
+  index = 0
+
+  # Looks for a match in the array
+  while matchFound == false && index < (arr.length - 1)
+    if (arr[index] + arr[index + 1]) == n
+      matchFound = true
+    end
+  index = index + 1
+  end
+
+  return matchFound
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  # This string holds the string "Hello, "
+  helloWithComma = "Hello, "
+
+  # This returns the concatenation of "Hello, " and a name
+  return helloWithComma + name
 end
 
-def starts_with_consonant? s
-  # YOUR CODE HERE
+def starts_with_consonant? (s)
+  # Initialize boolean
+  startsWithConsonant = true
+
+  # This block checks if the first letter is a consonant
+  # If the string is empty, return false
+  if s.empty?
+    startsWithConsonant = false
+  # If the first character in the string is not a letter, return false
+  elsif !s.slice(0).match?(/[[:alpha:]]/)
+    startsWithConsonant = false
+  # If the first letter, when converted to uppercase, is a vowel, return false
+  elsif s.slice(0).upcase.start_with? 'A', 'E', 'I', 'O', 'U'
+    startsWithConsonant = false
+  # Otherwise, the first letter is a consonant; so return true
+  else
+    startsWithConsonant = true
+  end
+
+  # Returns the result of the if statements
+  return startsWithConsonant
 end
 
 def binary_multiple_of_4? s
@@ -76,18 +114,3 @@ end
 class BookInStock
 # YOUR CODE HERE
 end
-
-# Call functions in part 1
-intArray = [1, 2, 3]
-emptyArray = []
-arrayOfOne = [1]
-
-puts "Part 1"
-puts "\nsum method"
-puts sum (intArray)
-puts sum (emptyArray)
-
-puts "\nmax_2_sum method"
-puts max_2_sum (intArray)
-puts max_2_sum (emptyArray)
-puts max_2_sum (arrayOfOne)
