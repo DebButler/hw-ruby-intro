@@ -138,5 +138,28 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  # This allows the program to read and write to the attributes
+  attr_accessor :isbn, :price
+
+  # This initializes a new book object
+  def initialize(isbn, price)
+    # This checks if the ISBN string is empty
+    if isbn.empty?
+      raise ArgumentError.new("You need to enter an ISBN number!")
+    end
+
+    # This checks if the price is less than or equal to zero
+    if price <= 0
+      raise ArgumentError.new("You need to enter a valid price!")
+    end
+
+    # This sets the object's isbn and price
+    @isbn = isbn
+    @price = price
+  end
+  
+  # This returns the price with two decimal places
+  def price_as_string
+    return "$" + format('%.2f', price)
+  end
 end
